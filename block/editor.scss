@@ -1,0 +1,13 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+.wp-block-tyty-ad  {
+	background: #870600;
+	color: white;
+	position: relative !important;
+	max-width: 100%;
+ }
