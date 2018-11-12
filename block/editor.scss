@@ -11,3 +11,9 @@
 	position: relative !important;
 	max-width: 100%;
  }
+.wp-block-cgb-cols .editor-block-list__layout {
+	display: flex;
+}
+.wp-block-cgb-cols .editor-block-list__layout .editor-block-list__block {
+	flex: 25%;
+}
