@@ -1,62 +1,87 @@
 import './style.scss';
 import './editor.scss';
 
+const { __ } = wp.i18n; 
 const { registerBlockType } = wp.blocks; 
 const { RichText } = wp.editor;
 
-registerBlockType( 'cgb/cols', {
-	title: 'cols', 
+registerBlockType( 'tyty/cols', {
+	title: __( 'COLS' ), 
 	icon: 'shield', 
 	category: 'common', 
 	keywords: [
-		'col'
+		'ad'
 	],
-	attrbutes: {
-		colz: {
-			type: 'number',
-			source: 'attribute',
-			selector: '.case',
-			default: 2
-		},
+	attributes: {
 		one: {
-			type: 'string'
+			type: 'string',
+			source: 'text',
+			selector: '.one'
+		},
+		two: {
+			type: 'string',
+			source: 'text',
+			selector: '.two'
+		},
+		three: {
+			type: 'string',
+			source: 'text',
+			selector: '.three'
+		},
+		four: {
+			type: 'string',
+			source: 'text',
+			selector: '.four'
+		},
+		cols: {
+			type: 'number'
 		}
 	},
 	edit: function( props ) {
-    		function onChange( event ) {
-    		    props.setAttributes( { colz: event.target.value } );
-    		}
-		function onChangeOne(content) {
-			props.setAttributes({ one: content});
+		function onChangeOne(tent) {
+			props.setAttributes({one:tent});
 		}
-		var cols = [];
-		let names = ['one','two','three','four'];
-		for (var i=0; i<props.attributes.colz; i++) {
-			let name = names[i];
-			cols.push(<div data-col={i}><RichText className={name} onChange={onChangeOne}  value={props.attributes.one} /></div>);
+		function onChangeTwo(tent) {
+			props.setAttributes({two:tent});
+		}
+		function onChangeThree(tent) {
+			props.setAttributes({three:tent});
+		}
+		function onChangeFour(tent) {
+			props.setAttributes({four:tent});
+		}
+		function setCols(event) {
+			let val = Number(event.target.value);
+			props.setAttributes({cols:val});
+			console.log(props);
 		}
 		return (
-			<div className="case" data-colz={props.attributes.colz}>
-				<div class="trols" >
-					<label>Number of Columns</label>
-					<input type="number" id="colz" onChange={onChange} />
+			<div className={ props.className }>
+			<div className="trols">
+				<input type="number" onChange={setCols} value={props.attributes.cols} className="setCols"  />	
+			</div>
+			<div className="cols">
+				<div className="col">
+					<RichText tagName="div" className="one" onChange={onChangeOne} placeholder="one" value={props.attributes.one} />
 				</div>
-				<div className={ props.className } >
-					{cols}
+				<div className="col">
+					<RichText tagName="div" className="two" onChange={onChangeTwo} placeholder="two" value={props.attributes.two} />
 				</div>
+				<div className="col">
+					<RichText tagName="div" className="three" onChange={onChangeThree} placeholder="three" value={props.attributes.three} />
+				</div>
+				<div className="col">
+					<RichText tagName="div" className="four" onChange={onChangeFour} placeholder="four" value={props.attributes.four} />
+				</div>
+			</div>
 			</div>
 		);
 	},
 
 	save: function( props ) {
-		var cols = [];
-		let names = ['one','two','three','four'];
-		for (var i=0; i<props.attributes.colz; i++) {
-			cols.push(<div className="col">{props.attributes.one}</div>)
-		}
 		return (
-			<div className="colz" data-colz={props.attributes.colz}>
-			{cols}
+			<div className="cols" data-cols={props.attributes.cols}>
+				<div className="one">{props.attributes.one}</div>
 			</div>
 		);
 	},
