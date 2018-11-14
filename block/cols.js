@@ -15,7 +15,7 @@ registerBlockType( 'tyty/cols', {
 	attributes: {
 		one: {
 			type: 'string',
-			source: 'text',
+			source: 'html',
 			selector: '.one'
 		},
 		two: {
@@ -81,7 +81,7 @@ registerBlockType( 'tyty/cols', {
 		let names = ['one','two','three','four'];
 		for(var i = 0; i<props.attributes.cols; i++) {
 			console.log(props.attributes);
-			cols.push(<div className={names[i]}>{props.attributes[names[i]]}</div>);
+			cols.push(<div className={names[i] + ' col'}>{props.attributes[names[i]]}</div>);
 		}
 		return (
 			<div className="cols" data-cols={props.attributes.cols}>

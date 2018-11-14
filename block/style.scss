@@ -19,3 +19,9 @@
 .shell {
 	height: 300px;
 }
+.cols {
+	display: flex;
+}
+.col {
+	flex: 25%;
+}
