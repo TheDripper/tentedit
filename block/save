@@ -1,0 +1,12 @@
+				//<div className="col">
+				//	<RichText tagName="div" className="one" onChange={onChangeOne} placeholder="one" value={props.attributes.one} />
+				//</div>
+				//<div className="col">
+				//	<RichText tagName="div" className="two" onChange={onChangeTwo} placeholder="two" value={props.attributes.two} />
+				//</div>
+				//<div className="col">
+				//	<RichText tagName="div" className="three" onChange={onChangeThree} placeholder="three" value={props.attributes.three} />
+				//</div>
+				//<div className="col">
+				//	<RichText tagName="div" className="four" onChange={onChangeFour} placeholder="four" value={props.attributes.four} />
+				//</div>

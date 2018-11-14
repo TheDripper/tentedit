@@ -55,24 +55,20 @@ registerBlockType( 'tyty/cols', {
 			props.setAttributes({cols:val});
 			console.log(props);
 		}
+		let cols = [];
+		let names = ['one','two','three','four'];
+		let funcs = ['oneChangeOne','onChangeTwo','onChangeThree','onChangeFour'];
+		for(var i = 0; i<props.attributes.cols; i++) {
+			cols.push(<div className="col"><RichText tagName="div" className={names[i]} onChange={funcs[i]} placeholder={names[i]} value={props.attributes[names[i]]} /></div>);
+		}
 		return (
+			
 			<div className={ props.className }>
 			<div className="trols">
 				<input type="number" onChange={setCols} value={props.attributes.cols} className="setCols"  />	
 			</div>
 			<div className="cols">
-				<div className="col">
-					<RichText tagName="div" className="one" onChange={onChangeOne} placeholder="one" value={props.attributes.one} />
-				</div>
-				<div className="col">
-					<RichText tagName="div" className="two" onChange={onChangeTwo} placeholder="two" value={props.attributes.two} />
-				</div>
-				<div className="col">
-					<RichText tagName="div" className="three" onChange={onChangeThree} placeholder="three" value={props.attributes.three} />
-				</div>
-				<div className="col">
-					<RichText tagName="div" className="four" onChange={onChangeFour} placeholder="four" value={props.attributes.four} />
-				</div>
+				{cols}
 			</div>
 			</div>
 		);
