@@ -39,6 +39,8 @@ registerBlockType( 'tyty/cols', {
 	},
 	edit: function( props ) {
 		function onChangeOne(tent) {
+			console.log("ONE");
+			console.log(tent);
 			props.setAttributes({one:tent});
 		}
 		function onChangeTwo(tent) {
@@ -53,14 +55,14 @@ registerBlockType( 'tyty/cols', {
 		function setCols(event) {
 			let val = Number(event.target.value);
 			props.setAttributes({cols:val});
-			console.log(props);
 		}
 		let cols = [];
 		let names = ['one','two','three','four'];
-		let funcs = ['oneChangeOne','onChangeTwo','onChangeThree','onChangeFour'];
+		let funcs = [onChangeOne,onChangeTwo,onChangeThree,onChangeFour];
 		for(var i = 0; i<props.attributes.cols; i++) {
 			cols.push(<div className="col"><RichText tagName="div" className={names[i]} onChange={funcs[i]} placeholder={names[i]} value={props.attributes[names[i]]} /></div>);
 		}
+		
 		return (
 			
 			<div className={ props.className }>
@@ -68,16 +70,22 @@ registerBlockType( 'tyty/cols', {
 				<input type="number" onChange={setCols} value={props.attributes.cols} className="setCols"  />	
 			</div>
 			<div className="cols">
-				{cols}
+				{cols}	
 			</div>
 			</div>
 		);
 	},
 
 	save: function( props ) {
+		let cols = [];
+		let names = ['one','two','three','four'];
+		for(var i = 0; i<props.attributes.cols; i++) {
+			console.log(props.attributes);
+			cols.push(<div className={names[i]}>{props.attributes[names[i]]}</div>);
+		}
 		return (
 			<div className="cols" data-cols={props.attributes.cols}>
-				<div className="one">{props.attributes.one}</div>
+			{cols}	
 			</div>
 		);
 	},
