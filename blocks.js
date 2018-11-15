@@ -10,4 +10,5 @@
  */
 
 import './block/ad.js';
-import './block/cols.js';
+//import './block/cols.js';
+import './block/hero.js';
