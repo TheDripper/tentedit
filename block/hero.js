@@ -83,13 +83,13 @@ registerBlockType( 'tyty/hero', {
 
 	save: function( props ) {
 		return (
-		<div className="shell">
+		<div className="topshell">
 			<div className={ props.className + " " + props.attributes.width} style={{
 					backgroundImage: `url(${props.attributes.backgroundImage})`,
 					backgroundSize: 'cover',
 					backgroundPosition: 'center'
 				}}>
-				<div className="blurb" style={"background-image:url("+props.attributes.back+")"} data-back={props.attributes.back}>
+				<div className="blurb">
 					<div className="tro">
 					{props.attributes.blurb}
 					</div>
