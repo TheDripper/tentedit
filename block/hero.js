@@ -14,11 +14,16 @@ registerBlockType( 'tyty/hero', {
 		'ad'
 	],
 	attributes: {
-		//blurb: {
-		//	type: 'array',
-		//	source: 'children',
-		//	selector: '.blurb'
-		//},
+		blurb: {
+			type: 'array',
+			source: 'text',
+			selector: '.blurbtext'
+		},
+		head: {
+			type: 'string',
+			source: 'text',
+			selector: '.subHead'
+		},
     		backgroundImage: {
     		    type: 'string',
     		    default: null, // no image by default!
@@ -29,9 +34,12 @@ registerBlockType( 'tyty/hero', {
 		}
 	},
 	edit: function( props ) {
-		//function changeBlurb(tent) {
-		//	props.setAttributes({blurb:tent});
-		//}
+		function changeBlurb(tent) {
+			props.setAttributes({blurb:tent});
+		}
+		function changeHead(tent) {
+			props.setAttributes({head:tent});
+		}
 		function setBack(mage) {
 			props.setAttributes({backgroundImage:mage.url});
 		}
@@ -40,7 +48,7 @@ registerBlockType( 'tyty/hero', {
 		}
 
 		return (
-			<div className="shell">
+			<div className="edittopshell">
 			<div className={ props.className + " blurb " + props.attributes.width } style={{
 					backgroundImage: `url(${props.attributes.backgroundImage})`,
 					backgroundSize: 'cover',
@@ -65,7 +73,7 @@ registerBlockType( 'tyty/hero', {
     				    position="bottom right"
     				    renderToggle={ ( { isOpen, onToggle } ) => (
     				        <Button isPrimary onClick={ onToggle } aria-expanded={ isOpen }>
-    				            Toggle Popover!
+    				            Banner Width
     				        </Button>
     				    ) }
     				    renderContent={ () => (
@@ -76,6 +84,10 @@ registerBlockType( 'tyty/hero', {
     				    ) }
     				/>
 				</InspectorControls>
+				<div className="tro">
+					<RichText tagName="h2" onChange={changeHead} className="subHead" placeholder="heading/title..." value={props.attributes.head} />
+					<RichText onChange={changeBlurb} className="blurbtext" placeholder="blurb..." value={props.attributes.blurb} />
+				</div>
 		</div>
 		</div>
 		);
@@ -91,7 +103,8 @@ registerBlockType( 'tyty/hero', {
 				}}>
 				<div className="blurb">
 					<div className="tro">
-					{props.attributes.blurb}
+					<h2 className="subHead">{props.attributes.head}</h2>
+					<p className="blurbtext">{props.attributes.blurb}</p>
 					</div>
 				</div>
 			</div>

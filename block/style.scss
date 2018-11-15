@@ -45,13 +45,18 @@
 	align-items: flex-start;
 	color: #870600;
 }
+.shell .full {
+	position: absolute;
+	width: 100vw;
+	left: 0;
+}
 .topshell .full {
 	position: absolute;
 	width: 100vw;
 	left: 0;
 }
 .topshell {
-	height: 420px;
+	height: calc(100vh - 150px);
 }
 @media(max-width: 880px) {
 	.blurb .tro {
