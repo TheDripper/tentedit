@@ -3,7 +3,8 @@ import './editor.scss';
 
 const { __ } = wp.i18n; 
 const { registerBlockType } = wp.blocks; 
-const { RichText, MediaUpload, InspectorControls } = wp.editor;
+const { RichText, MediaUpload, InspectorControls, BlockControls } = wp.editor;
+const { Dropdown, Button } = wp.components;
 
 registerBlockType( 'tyty/hero', {
 	title: __( 'Hero' ), 
@@ -13,32 +14,34 @@ registerBlockType( 'tyty/hero', {
 		'ad'
 	],
 	attributes: {
-		blurb: {
-			type: 'array',
-			source: 'children',
-			selector: '.blurb'
-		},
-		back: {
-			type: 'string',
-			source: 'attribute',
-			selector: '.blurb',
-			attribute: 'data-back'
-		},
+		//blurb: {
+		//	type: 'array',
+		//	source: 'children',
+		//	selector: '.blurb'
+		//},
     		backgroundImage: {
     		    type: 'string',
     		    default: null, // no image by default!
-    		}
+    		},
+		width: {
+			type: 'string',
+			default: 'full'
+		}
 	},
 	edit: function( props ) {
-		function changeBlurb(tent) {
-			props.setAttributes({blurb:tent});
-		}
+		//function changeBlurb(tent) {
+		//	props.setAttributes({blurb:tent});
+		//}
 		function setBack(mage) {
 			props.setAttributes({backgroundImage:mage.url});
 		}
+		function setWidth(e) {
+			props.setAttributes({width:e.target.dataset.opt});
+		}
 
 		return (
-			<div className={ props.className } style={{
+			<div className="shell">
+			<div className={ props.className + " blurb " + props.attributes.width } style={{
 					backgroundImage: `url(${props.attributes.backgroundImage})`,
 					backgroundSize: 'cover',
 					backgroundPosition: 'center'
@@ -56,19 +59,43 @@ registerBlockType( 'tyty/hero', {
         				    )}
         				/>
 				</div>
+    				<Dropdown
+    				    className="widthcont"
+    				    contentClassName="widthdrop"
+    				    position="bottom right"
+    				    renderToggle={ ( { isOpen, onToggle } ) => (
+    				        <Button isPrimary onClick={ onToggle } aria-expanded={ isOpen }>
+    				            Toggle Popover!
+    				        </Button>
+    				    ) }
+    				    renderContent={ () => (
+    				        <div>
+					<div data-opt="full" class="opt" onClick={setWidth}>Full Width</div>
+					<div data-opt="cont" class="opt" onClick={setWidth}>Constrained</div>
+    				        </div>
+    				    ) }
+    				/>
 				</InspectorControls>
-				<RichText tagName="div" className="blurb" onChange={changeBlurb} placeholder="Blurb text here..." value={props.attributes.blurb} />
-			</div>
+		</div>
+		</div>
 		);
 	},
 
 	save: function( props ) {
 		return (
-			<div className={props.className}>
+		<div className="shell">
+			<div className={ props.className + " " + props.attributes.width} style={{
+					backgroundImage: `url(${props.attributes.backgroundImage})`,
+					backgroundSize: 'cover',
+					backgroundPosition: 'center'
+				}}>
 				<div className="blurb" style={"background-image:url("+props.attributes.back+")"} data-back={props.attributes.back}>
-				{props.attributes.blurb}
+					<div className="tro">
+					{props.attributes.blurb}
+					</div>
 				</div>
 			</div>
+		</div>
 		);
 	},
 } );

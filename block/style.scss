@@ -25,3 +25,42 @@
 .col {
 	flex: 25%;
 }
+.blurb {
+	width: 100%;
+	height: 390px;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+.blurb .tro {
+	width: 33%;
+	height: 50%;
+	background: rgba(255,255,255,0.9);
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	color: #870600;
+}
+.shell .full {
+	position: absolute;
+	width: 100vw;
+	left: 0;
+}
+@media(max-width: 880px) {
+	.blurb .tro {
+		width: 50%;
+	}
+}
+@media(max-width: 600px) {
+	.blurb {
+		align-items: flex-end;
+		margin-bottom: 80px;
+	}
+	.blurb .tro {
+		width: 100%;
+	}
+}
