@@ -45,17 +45,17 @@
 	align-items: flex-start;
 	color: #870600;
 }
-.shell .full {
+//.shell .full {
+//	position: absolute;
+//	width: 100vw;
+//	left: 0;
+//}
+.topshell.full  .blurb {
 	position: absolute;
 	width: 100vw;
 	left: 0;
 }
-.topshell .full {
-	position: absolute;
-	width: 100vw;
-	left: 0;
-}
-.topshell {
+.topshell.full {
 	height: calc(100vh - 150px);
 }
 @media(max-width: 880px) {

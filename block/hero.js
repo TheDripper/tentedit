@@ -15,8 +15,8 @@ registerBlockType( 'tyty/hero', {
 	],
 	attributes: {
 		blurb: {
-			type: 'array',
-			source: 'text',
+			type: 'string',
+			source: 'html',
 			selector: '.blurbtext'
 		},
 		head: {
@@ -48,8 +48,8 @@ registerBlockType( 'tyty/hero', {
 		}
 
 		return (
-			<div className="edittopshell">
-			<div className={ props.className + " blurb " + props.attributes.width } style={{
+			<div className={"edittopshell " + props.attributes.width}>
+			<div className={ props.className + " blurb" } style={{
 					backgroundImage: `url(${props.attributes.backgroundImage})`,
 					backgroundSize: 'cover',
 					backgroundPosition: 'center'
@@ -79,7 +79,7 @@ registerBlockType( 'tyty/hero', {
     				    renderContent={ () => (
     				        <div>
 					<div data-opt="full" class="opt" onClick={setWidth}>Full Width</div>
-					<div data-opt="cont" class="opt" onClick={setWidth}>Constrained</div>
+					<div data-opt="art" class="opt" onClick={setWidth}>Constrained</div>
     				        </div>
     				    ) }
     				/>
@@ -95,18 +95,16 @@ registerBlockType( 'tyty/hero', {
 
 	save: function( props ) {
 		return (
-		<div className="topshell">
-			<div className={ props.className + " " + props.attributes.width} style={{
+		<div className={props.attributes.width + " topshell"}>
+			<div className={ props.className + " blurb"} style={{
 					backgroundImage: `url(${props.attributes.backgroundImage})`,
 					backgroundSize: 'cover',
 					backgroundPosition: 'center'
 				}}>
-				<div className="blurb">
 					<div className="tro">
 					<h2 className="subHead">{props.attributes.head}</h2>
-					<p className="blurbtext">{props.attributes.blurb}</p>
+					<div className="blurbtext">{props.attributes.blurb}</div>
 					</div>
-				</div>
 			</div>
 		</div>
 		);
